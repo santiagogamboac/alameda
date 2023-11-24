@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Responsive</title>
+
+    <!-- Incluye Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Incluye tus estilos CSS aquí -->
+    <style>
+        #calendar {
+            width: 100%;
+            margin: 0 auto;
+            border: 1px solid #4CAF50; /* Agrega un borde verde alrededor del calendario */
+        border-radius: 5px;
+        } 
+    
+    /* Estilo adicional para la celda actual */
+    #calendar .fc-today {
+        border: 2px solid #4CAF50; /* Cambia el color del borde a verde (#4CAF50) */
+        background-color: #DFF0D8; /* Resalta la celda actual con un verde claro (#DFF0D8) */
+    }
+
+      /* Estilo para los bordes de los días de la semana en el encabezado */
+      #calendar .fc-widget-header {
+        border: 1px solid #4CAF50; /* Cambia el color del borde a verde (#4CAF50) */
+    }
+
+        @media (min-width: 576px) {
+            /* Estilos para pantallas más grandes que 576px (ejemplo: tablets) */
+            #calendar {
+                width: 80%;
+            }
+        }
+
+        @media (min-width: 768px) {
+            /* Estilos para pantallas más grandes que 768px (ejemplo: tablets landscape) */
+            #calendar {
+                width: 60%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            /* Estilos para pantallas más grandes que 992px (ejemplo: computadoras de escritorio) */
+            #calendar {
+                width: 50%;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            /* Estilos para pantallas más grandes que 1200px (ejemplo: pantallas grandes) */
+            #calendar {
+                width: 40%;
+            }
+        }
+
+        /* Estilo para resaltar el día actual */
+        .fc-today {
+            background-color: #ffffcc; /* Puedes ajustar el color según tus preferencias */
+        }
+    </style>
+
+    <!-- Incluye tus bibliotecas y scripts aquí -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
+    <!-- Incluye Bootstrap JS y Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="calendar"></div>
+
+    <!-- Modal para mostrar información del evento -->
+    <div class="modal" id="eventModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Cabecera del modal -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Detalles del Evento</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Contenido del modal -->
+                <div class="modal-body" id="eventModalBody">
+                    <!-- Contenido del evento se mostrará aquí -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Inicializar el calendario
+            $('#calendar').fullCalendar({
+                // Configuración del calendario
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                events: [
+                    // Aquí deberías cargar dinámicamente las fechas ocupadas y los eventos futuros desde tu base de datos
+                    {
+                        title: 'Fecha Ocupada',
+                        start: '2023-11-22', // Ejemplo de fecha ocupada
+                        color: 'red',
+                        description: 'Información adicional para la fecha ocupada.'
+                    },
+                    {
+                        title: 'Próximo Evento',
+                        start: '2023-12-01', // Ejemplo de evento futuro
+                        color: 'green',
+                        description: 'Detalles sobre el próximo evento.'
+                    }
+                ],
+                // Evento click para mostrar información adicional
+                eventClick: function (event) {
+                    // Mostrar información del evento en el modal
+                    $('#eventModalBody').html('<h5>' + event.title + '</h5><p>' + event.description + '</p>');
+                    $('#eventModal').modal('show');
+                },
+                // Renderizar el día actual con un estilo especial
+                dayRender: function (date, cell) {
+                    var today = moment().format('YYYY-MM-DD');
+                    if (date.format('YYYY-MM-DD') === today) {
+                        cell.css('background-color', '#ffffcc'); // Puedes ajustar el color según tus preferencias
+                    }
+                }
+                // Otros ajustes y opciones que desees configurar
+            });
+        });
+    </script>
+</body>
+</html>

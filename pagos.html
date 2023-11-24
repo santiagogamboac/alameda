@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-around;
+            background-color: transparent;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 200px;
+            margin: 10px;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            transition: border 0.3s ease;
+            /* Agregamos transición de borde */
+            border: 2px solid transparent;
+            /* Borde transparente inicialmente */
+        }
+
+        .logo {
+            width: 150px;
+            /* Hacemos las imágenes un poco más grandes */
+            height: 150px;
+            margin: 10px auto;
+            display: block;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+            /* Agrega una transición a la propiedad transform */
+        }
+
+        .card:hover {
+            border: 2px solid #4CAF50;
+            /* Cambiamos el color del borde a verde en hover */
+        }
+
+        .pay-button {
+            background-color: #0066cc;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                /* Cambiar a dirección de columna en pantallas más pequeñas */
+                align-items: center;
+                /* Centrar verticalmente en pantallas más pequeñas */
+            }
+
+            .card {
+                width: 80%;
+                /* Ocupar todo el ancho en pantallas más pequeñas */
+                margin: 10px 0;
+                /* Espacio entre las tarjetas */
+            }
+        }
+
+        @media (max-width: 1025px) {
+            .container {
+                justify-content: center;
+                /* Centrar horizontalmente en tabletas hasta 1024px */
+            }
+
+            .card {
+                width: 80%;
+                /* Ajustar el ancho de las tarjetas en tabletas */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <img class="logo"
+                src="https://cdn.constructoracolpatria.com/images/proyectos_gestor-logo-08765e63904cb46ca30677ae18005a24.jpg"
+                alt="Admon">
+                <button class="pay-button" onclick="window.open('https://web-conjuntos.jelpit.com/zona-publica-pagos', '_blank')">Pagar</button>
+
+        </div>
+        <div class="card">
+            <img class="logo" src="https://andesco.org.co/wp-content/uploads/2023/03/Logos-Danna_Mesa-de-trabajo-1.png"
+                alt="Acueducto">
+                <button class="pay-button" onclick="window.open('https://pagos.eaab.gov.co/', '_blank')">Pagar</button>
+
+        </div>
+        <div class="card">
+            <img class="logo"
+                src="https://images.ctfassets.net/3brzg7q3bvg1/5qkqIbzB1VpZ1DapXhIMho/30e84d821498ebe49b89e1f32597e7c1/vanti-logo-og.png"
+                alt="Vanti">
+                
+                <button class="pay-button" onclick="window.open('https://www.grupovanti.com/tramites-y-ayuda/factura/paga-tu-factura', '_blank')">Pagar</button>
+        </div>
+        <div class="card">
+            <img class="logo" src="https://www.youthbusiness.org/upload/resized/110422050405enel%20web%20square%201.jpg"
+                alt="Acueducto">
+            <button class="pay-button" onclick="window.open('https://www.enel.com.co/es/personas/boton-de-pago.html', '_blank')">Pagar</button>
+        </div>
+        <!-- Agrega más tarjetas aquí -->
+    </div>
+</body>
+
+</html>
